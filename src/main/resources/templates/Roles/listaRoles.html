@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Desafío - Usuario</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.rtl.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-grid.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-grid.rtl.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reboot.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-reboot.rtl.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-utilities.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-utilities.rtl.css}" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #CFD0D1;">
+        <div class="container-fluid navbar-text">
+            <a th:href="@{/home}" class="navbar-brand h1" >DESAFÍO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a th:href="@{/usuarios/lista}" class="nav-link active h2" aria-current="page">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/roles/lista}" class="nav-link active h2" aria-current="page">Roles</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="text-center m-4">
+        <h1>Roles</h1>
+    </div>
+    <div class="container-fluid content-container">
+        <div class="row">
+            <div class="col-lg-12 text-left mb-3">
+                <a th:href="@{/roles/agregar}" class="btn btn-success">Agregar Rol</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="table-responsive mx-auto text-center">
+                    <table class="table table-hover table-bordered" style="vertical-align: middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col" colspan="2">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="role: ${roles}">
+                                <td th:text="${role.getIdRole()}" />
+                                <td th:text="${role.getNameRole()}" />
+                                <td th:text="${role.getDescriptionRole()}" />
+                                <td>
+                                    <a th:href="@{/roles/detalle/{idRole} (idRole=${role.getIdRole()})}" class="btn btn-info">Consultar</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/roles/eliminar(idRole=${role.getIdRole()})}" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/bootstrap.esm.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>
